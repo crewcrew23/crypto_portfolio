@@ -1,6 +1,14 @@
 @media screen and (max-width: 1240px){
-    .card{
-        justify-content: center;
+    .list_item {
+        font-size: 12px;
+
+    }
+    .tag {
+        font-size: 12px;
+
+    }
+    .stat{
+        font-size: 12px;
 
     }
 }

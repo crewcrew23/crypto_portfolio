@@ -16,11 +16,11 @@ const AppSider = observer(() => {
     // localStorage.removeItem('assets')
 
     return(
-        <Layout.Sider width="50%" style={{padding: '1rem'}} className='sider'>
+        <Layout.Sider width="60%" style={{padding: '1rem'}} className='sider'>
             {assets.map(asset =>(
                 <Card key={asset.id} bordered={false} className='card'
                       style={{marginBottom: '1rem', maxWidth:'100%'}} >
-                    <div style={{display:"flex"}}>
+                    <div style={{display:"flex"}} >
                         <img src={coin.find((c) => c.id === asset.id).icon} style={{width: 20, height:20, marginRight:'0.5rem'}}/>
                         <Statistic
                             title={capitalize(asset.id)}
@@ -42,11 +42,11 @@ const AppSider = observer(() => {
                             {title: 'Total profit', value: asset.totalProfit, isProfit: true},
                         ]}
                         renderItem={(item) => (
-                            <List.Item>
+                            <List.Item className='list_item'>
                                 <span>{item.title}</span>
                                 {item.isPlane && <span>{item.value}</span>}
                                 {item.isProfit && <Typography.Text type={asset.grow?'success':'danger'}>
-                                    <Tag color={asset.grow?'green':'red'}>
+                                    <Tag color={asset.grow?'green':'red'} className='tag'>
                                         {asset.grow?asset.growPercent+' %':'- '+asset.growPercent+' %'}
                                     </Tag>
                                     {parseFloat(item.value).toFixed(2)} $

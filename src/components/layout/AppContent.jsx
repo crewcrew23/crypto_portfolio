@@ -1,4 +1,4 @@
-import {Button, Layout, Modal, Tag, Typography} from "antd";
+import {Button, Layout, Modal, Tag, Typography, Drawer} from "antd";
 import React, {useState} from "react";
 import {useCrypto} from "../../context/crypto-context.jsx";
 import '../../styles/content.css'
@@ -26,15 +26,12 @@ export default function AppContent(){
         return acc
     }, {})
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const showModal = () => {
-        setIsModalOpen(true);
+    const [open, setOpen] = useState(false);
+    const showDrawer = () => {
+        setOpen(true);
     };
-    const handleOk = () => {
-        setIsModalOpen(false);
-    };
-    const handleCancel = () => {
-        setIsModalOpen(false);
+    const onClose = () => {
+        setOpen(false);
     };
 
     return(
@@ -49,14 +46,15 @@ export default function AppContent(){
                 .reduce((acc, v)=> (acc+=v), 0)
                 .toFixed(2)}$
             </Tag>
-            <Button type="primary" onClick={showModal} style={{marginTop:10}}>
-                Show analytics
-            </Button>
+                <Button type="primary" onClick={showDrawer}>
+                    Show analytics
+                </Button>
+                <Drawer title="Analytics" onClose={onClose} open={open} size={'large'}>
+                    <PortfolioChart/>
+                    <AssetsTable/>
+                </Drawer>
             </Typography.Title>
-            <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                <PortfolioChart/>
-                <AssetsTable/>
-            </Modal>
+
         </Layout.Content>
 
     )
